@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - Your Smart Shopping Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">Conversational Shopping. Smart Checkout. Real-Time Support.</p>
+<nav class="main-nav" style="margin-top: 1rem; text-align:center;">
+  <a href="index.html">Home</a> |
+  <a href="assistant.html">Voice Assistant</a> |
+  <a href="cart.html">Smart Cart</a> |
+  <a href="tracking.html">Order Tracking</a> |
+  <a href="kiosk.html">In-Store Kiosk</a> |
+  <a href="help.html">Help & FAQs</a> |
+  <a href="demo.html">Demo</a> |
+  <a href="how-it-works.html">How It Works</a> |
+  <a href="contact.html">Contact</a> |
+  <a href="about.html">About</a>
+</nav>
+  
+</header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="info">
+        <h2>Talk, Shop & Checkout — All by Voice</h2>
+        <p>Let ShopVerseAI help you find products, answer your questions, and guide your checkout process hands-free.</p>
+        <button onclick="startAssistant()">🛜️ Start Shopping Assistant</button>
+        <div id="live-response" class="voice-response-box">🤖 Ready when you are.</div>
+      </div>
+      <div class="animation">
+        <video autoplay loop muted playsinline style="width: 100%; border-radius: 20px;">
+          <source src="images/mascot.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <h2>What ShopVerseAI Can Do</h2>
+      <ul>
+        <li>🎹 Voice-Activated Shopping & Cart Recovery</li>
+        <li>💬 FAQs, Discounts, Order Tracking by Voice</li>
+        <li>📦 Inventory Availability & In-Store Locator</li>
+        <li>🛒 One-Step Voice Checkout</li>
+        <li>🧠 OmniDimension Smart Agent Integration</li>
+      </ul>
+    </section>
+
+    <!-- Cart -->
+    <section class="cart-section">
+      <h2>🛒 Your Cart</h2>
+      <ul id="cart-list" class="cart-list"></ul>
+    </section>
+
+    <!-- Kiosk -->
+    <section class="kiosk">
+      <h2>Smart Kiosk Mode</h2>
+      <p>Enable ShopVerseAI on in-store tablets or kiosks to help customers find what they need, instantly.</p>
+      <img src="images/kiosk.jpg" alt="Smart Kiosk AI" class="kiosk-img" />
+    </section>
+
+    <!-- Voice Wave -->
+    <section class="voice-wave">
+      <img src="images/frequency-17256_512.gif" alt="Voice Animation" class="voice-img" />
+      <p>Listening for commands like "Where’s my order?" or "Apply discount"...</p>
+    </section>
+
+    <button onclick="startAssistant()">🛜️ Start Shopping Assistant</button>
+    <div id="live-response">🤖 Ready when you are.</div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension</p>
+  </footer>
+
+  <!-- Floating Cart Icon -->
+  <div id="cart-fab" onclick="toggleCart()">🛒</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - Smart Cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">Smart Cart — Manage & Recover with AI</p>
+  </header>
+
+  <main>
+    <section class="cart-manager">
+      <h2>Your Smart Cart</h2>
+      <input id="item-input" type="text" placeholder="Enter product name..." />
+      <button id="add-item-btn">➕ Add to Cart</button>
+
+      <ul id="cart-list" class="cart-list"></ul>
+
+      <button id="clear-cart-btn" style="margin-top:1rem; background:#ff0077;">Clear Cart</button>
+
+      <div id="ai-suggestion" class="voice-response-box" style="margin-top: 2rem;">
+        AI Suggestions will appear here...
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension</p>
+  </footer>
+
+  <script>
+    // Dark mode toggle (same logic as before)
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      localStorage.setItem('darkMode', themeToggle.checked);
+    });
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+      }
+    });
+
+    // Cart logic
+    const addItemBtn = document.getElementById('add-item-btn');
+    const itemInput = document.getElementById('item-input');
+    const cartList = document.getElementById('cart-list');
+    const clearCartBtn = document.getElementById('clear-cart-btn');
+    const aiSuggestion = document.getElementById('ai-suggestion');
+
+    let cartItems = JSON.parse(localStorage.getItem('smartCart')) || [];
+
+    function renderCart() {
+      cartList.innerHTML = '';
+      if(cartItems.length === 0) {
+        cartList.innerHTML = '<li>Your cart is empty.</li>';
+        aiSuggestion.textContent = 'Add items to get AI suggestions!';
+        return;
+      }
+      cartItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '✖';
+        removeBtn.style.marginLeft = '10px';
+        removeBtn.style.cursor = 'pointer';
+        removeBtn.onclick = () => {
+          cartItems.splice(index,1);
+          saveCart();
+          renderCart();
+          generateAISuggestion();
+        };
+        li.appendChild(removeBtn);
+        cartList.appendChild(li);
+      });
+    }
+
+    function saveCart() {
+      localStorage.setItem('smartCart', JSON.stringify(cartItems));
+    }
+
+    function generateAISuggestion() {
+      // Basic AI suggestion example — you can replace with real AI API call
+      if(cartItems.length === 0) {
+        aiSuggestion.textContent = 'Add items to get AI suggestions!';
+        return;
+      }
+      if(cartItems.includes('laptop')) {
+        aiSuggestion.textContent = '💡 Suggestion: Add a laptop bag or mouse for better experience.';
+      } else if(cartItems.includes('headphones')) {
+        aiSuggestion.textContent = '💡 Suggestion: Check out our headphone stands on sale!';
+      } else {
+        aiSuggestion.textContent = '💡 Tip: Buying multiple items? Check for combo discounts!';
+      }
+    }
+
+    addItemBtn.addEventListener('click', () => {
+      const val = itemInput.value.trim().toLowerCase();
+      if(val) {
+        cartItems.push(val);
+        saveCart();
+        renderCart();
+        generateAISuggestion();
+        itemInput.value = '';
+      }
+    });
+
+    clearCartBtn.addEventListener('click', () => {
+      cartItems = [];
+      saveCart();
+      renderCart();
+      generateAISuggestion();
+    });
+
+    window.onload = () => {
+      renderCart();
+      generateAISuggestion();
+    };
+  </script>
+</body>
+</html>

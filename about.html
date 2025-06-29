@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - About the Creator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">About the Creator & Project</p>
+  </header>
+
+  <main>
+    <section class="about-section" style="max-width:600px; margin:auto; text-align:center; padding:2rem;">
+      <img src="images/your-photo.jpg" alt="Your Name" style="width:150px; height:150px; border-radius:50%; box-shadow:0 0 15px #00ffff;" />
+
+      <h2>Kumari Vrishti</h2>
+      <p><strong>Role:</strong> Solo Creator & Developer</p>
+
+      <p>
+        ShopVerseAI is my passion project developed for Vibe-a-Thon 2025 — a smart, voice-enabled shopping assistant designed to make your online and in-store shopping experience effortless.
+      </p>
+
+      <p>
+        I specialize in Full Stack Development, AI/ML integration, and creating intuitive user interfaces. This project combines voice recognition, AI-powered assistance, and real-time support for a seamless shopping journey.
+      </p>
+
+      <p>Feel free to reach out or explore my portfolio to know more about my work.</p>
+
+      <p>
+        <a href="mailto:vrishtikumari80@gmail.com" style="color:#00ffff; text-decoration:none;">📧 Contact Me</a> | 
+        <a href="https://www.linkedin.com/in/vrishti-kumari" target="_blank" style="color:#00ffff; text-decoration:none;">LinkedIn</a> | 
+        <a href="https://github.com/vrishtikumari" target="_blank" style="color:#00ffff; text-decoration:none;">GitHub</a>
+      </p>
+
+      <p style="margin-top:3rem; font-size:0.9rem; color:#aaa;">
+        Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p style="text-align:center; font-size:0.8rem; color:#666; margin-top:2rem;">
+      &copy; 2025 Kumari Vrishti. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    // Dark mode toggle (same as other pages)
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      localStorage.setItem('darkMode', themeToggle.checked);
+    });
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+      }
+    });
+  </script>
+</body>
+</html>

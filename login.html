@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">Welcome back! Please login.</p>
+  </header>
+
+  <main style="max-width: 400px; margin: auto; padding: 2rem;">
+    <form id="login-form">
+      <label for="email">Email</label><br />
+      <input type="email" id="email" required /><br /><br />
+
+      <label for="password">Password</label><br />
+      <input type="password" id="password" required /><br /><br />
+
+      <button type="submit" style="background:#ff0077; color:#fff; padding: 0.8rem 1.5rem; border:none; border-radius:12px; cursor:pointer;">
+        Login
+      </button>
+    </form>
+
+    <p style="margin-top: 1rem;">Don't have an account? <a href="signup.html">Sign up here</a></p>
+
+    <div id="login-message" style="margin-top:1rem; color:#00ffff;"></div>
+  </main>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const message = document.getElementById('login-message');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+
+      // Simple check with localStorage (replace with real backend validation)
+      const storedEmail = localStorage.getItem('userEmail');
+      const storedPassword = localStorage.getItem('userPassword');
+
+      if (email === storedEmail && password === storedPassword) {
+        message.textContent = "Login successful! Redirecting...";
+        // Save login state
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('loggedInUser', email);
+        setTimeout(() => {
+          window.location.href = 'index.html'; // redirect to homepage
+        }, 1000);
+      } else {
+        message.textContent = "Invalid email or password.";
+      }
+    });
+  </script>
+</body>
+</html>

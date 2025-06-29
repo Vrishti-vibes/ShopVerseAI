@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - Help & FAQs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">Help & FAQs — Voice Commands & Usage Guide</p>
+
+    <nav class="main-nav">
+      <a href="index.html">Home</a> |
+      <a href="assistant.html">Voice Assistant</a> |
+      <a href="cart.html">Smart Cart</a> |
+      <a href="tracking.html">Order Tracking</a> |
+      <a href="kiosk.html">In-Store Kiosk</a> |
+      <a href="help.html">Help & FAQs</a> |
+      <a href="demo.html">Demo</a> |
+      <a href="how-it-works.html">How It Works</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="help-section" style="max-width:700px; margin:auto; padding:2rem; text-align:left;">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary><strong>How do I start using the voice assistant?</strong></summary>
+        <p>Click the microphone button on the Voice Assistant page or Demo page and speak your command clearly.</p>
+      </details>
+
+      <details>
+        <summary><strong>What voice commands can I use?</strong></summary>
+        <ul>
+          <li>"Find me [product name]"</li>
+          <li>"Add [product name] to my cart"</li>
+          <li>"Remove [product name] from my cart"</li>
+          <li>"Show me my cart"</li>
+          <li>"Track my order"</li>
+          <li>"Apply discount code"</li>
+          <li>"Where is the nearest store?"</li>
+          <li>"Help"</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>Can I use voice commands while shopping in-store?</strong></summary>
+        <p>Yes! Use the In-Store Kiosk mode on tablets available at partner stores for voice-enabled assistance.</p>
+      </details>
+
+      <details>
+        <summary><strong>Is my data safe when using ShopVerseAI?</strong></summary>
+        <p>We prioritize your privacy and secure your data using best practices. No data is shared without your consent.</p>
+      </details>
+
+      <details>
+        <summary><strong>What should I do if the assistant doesn’t understand my command?</strong></summary>
+        <p>Try speaking clearly and in a quiet environment. If problems persist, use manual input or contact support.</p>
+      </details>
+
+      <h2>Voice Command Usage Tips</h2>
+      <ul>
+        <li>Speak naturally and clearly for best results.</li>
+        <li>Use simple commands like "Add headphones to cart" or "Track order 12345".</li>
+        <li>Pause briefly between commands if you need to speak multiple instructions.</li>
+        <li>Make sure your microphone is enabled and working.</li>
+      </ul>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension</p>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      localStorage.setItem('darkMode', themeToggle.checked);
+    });
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+      }
+    });
+  </script>
+</body>
+</html>

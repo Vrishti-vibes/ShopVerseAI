@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - How It Works</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">How ShopVerseAI Works</p>
+  </header>
+
+  <main>
+    <section class="how-it-works" style="max-width:700px; margin:auto; padding:2rem;">
+      <h2>Using ShopVerseAI Made Simple</h2>
+
+      <ol style="text-align:left; font-size:1.1rem; line-height:1.6;">
+        <li><strong>Start the Voice Assistant:</strong> Click the microphone button to begin talking to ShopVerseAI.</li>
+        <li><strong>Ask Questions:</strong> Use natural voice commands like "Find me a laptop," "Apply discount," or "Track my order."</li>
+        <li><strong>Manage Your Cart:</strong> Add or remove products using voice or manual input for smooth shopping.</li>
+        <li><strong>Get Real-Time Updates:</strong> Track your order status without leaving the app.</li>
+        <li><strong>In-Store Support:</strong> Use the kiosk mode for quick product searches and assistance while shopping in physical stores.</li>
+        <li><strong>Checkout Easily:</strong> Complete your purchase through simple voice commands.</li>
+      </ol>
+
+      <p style="margin-top:2rem;">
+        ShopVerseAI combines voice recognition, AI assistance, and real-time data to make shopping easier, faster, and more enjoyable.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension</p>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      localStorage.setItem('darkMode', themeToggle.checked);
+    });
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+      }
+    });
+  </script>
+</body>
+</html>

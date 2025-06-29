@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - Voice Assistant Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">Voice Assistant Demo — Talk & Get Responses</p>
+  </header>
+
+  <main>
+    <section class="voice-assistant">
+      <h2>Speak to ShopVerseAI</h2>
+      <button id="start-btn">🎤 Start Listening</button>
+      <button id="stop-btn" disabled>⏹ Stop</button>
+
+      <div id="transcript" class="voice-response-box">Your speech will appear here...</div>
+      <div id="response" class="voice-response-box" style="margin-top:1rem; background:#003333;">
+        Assistant response will appear here...
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension</p>
+  </footer>
+
+  <script>
+    // Dark mode toggle logic (same as before)
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      localStorage.setItem('darkMode', themeToggle.checked);
+    });
+
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+      }
+    });
+
+    // Voice recognition setup
+    const startBtn = document.getElementById('start-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const transcriptDiv = document.getElementById('transcript');
+    const responseDiv = document.getElementById('response');
+
+    let recognition;
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      transcriptDiv.textContent = 'Speech Recognition API not supported in this browser.';
+      startBtn.disabled = true;
+    } else {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.continuous = false;
+
+      recognition.onstart = () => {
+        transcriptDiv.textContent = '🎧 Listening... Speak now.';
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+      };
+
+      recognition.onresult = (event) => {
+        const spokenWords = event.results[0][0].transcript;
+        transcriptDiv.textContent = `🗣️ You said: "${spokenWords}"`;
+        respondToSpeech(spokenWords);
+      };
+
+      recognition.onerror = (event) => {
+        transcriptDiv.textContent = '⚠️ Error occurred in recognition: ' + event.error;
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      };
+
+      recognition.onend = () => {
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      };
+    }
+
+    startBtn.addEventListener('click', () => {
+      if (recognition) recognition.start();
+    });
+
+    stopBtn.addEventListener('click', () => {
+      if (recognition) recognition.stop();
+    });
+
+    // Simple AI response logic (you can expand or connect to backend)
+    function respondToSpeech(text) {
+      let reply = "Sorry, I didn't understand that.";
+
+      const lowerText = text.toLowerCase();
+
+      if (lowerText.includes('hello') || lowerText.includes('hi')) {
+        reply = "Hello! How can I help you shop today?";
+      } else if (lowerText.includes('discount')) {
+        reply = "There is a 20% discount on electronics today!";
+      } else if (lowerText.includes('order status') || lowerText.includes('track order')) {
+        reply = "Your last order is out for delivery and should arrive tomorrow.";
+      } else if (lowerText.includes('thank you') || lowerText.includes('thanks')) {
+        reply = "You're welcome! Happy shopping!";
+      }
+
+      responseDiv.textContent = `🤖 ${reply}`;
+      speak(reply);
+    }
+
+    // Speech synthesis
+    function speak(text) {
+      if (!('speechSynthesis' in window)) {
+        console.warn('Speech Synthesis not supported.');
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      window.speechSynthesis.speak(utterance);
+    }
+  </script>
+</body>
+</html>

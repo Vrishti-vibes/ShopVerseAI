@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopVerseAI - Contact</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
+    <span class="moon">🌙</span>
+  </div>
+
+  <header>
+    <h1>ShopVerse<span>AI</span></h1>
+    <p class="tagline">Get in Touch</p>
+  </header>
+
+  <main>
+    <section class="contact-section" style="max-width:600px; margin:auto; padding:2rem;">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <label for="name">Name</label><br />
+        <input type="text" id="name" name="name" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:none;" /><br />
+
+        <label for="email">Email</label><br />
+        <input type="email" id="email" name="email" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:none;" /><br />
+
+        <label for="message">Message</label><br />
+        <textarea id="message" name="message" rows="5" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:none;"></textarea><br />
+
+        <button type="submit" style="padding:1rem 2rem; background:#ff0077; color:white; border:none; border-radius:12px; cursor:pointer;">Send Message</button>
+      </form>
+
+      <div id="form-status" style="margin-top:1rem; color:#00ffff;"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with ❤️ for Vibe-a-Thon 2025 | Powered by OmniDimension</p>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      localStorage.setItem('darkMode', themeToggle.checked);
+    });
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+      }
+    });
+
+    // Simple form submit handler (demo only)
+    const form = document.getElementById('contact-form');
+    const statusDiv = document.getElementById('form-status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      statusDiv.textContent = 'Sending message...';
+
+      // Demo: just simulate sending, no backend
+      setTimeout(() => {
+        statusDiv.textContent = 'Thank you for reaching out! We will get back to you soon.';
+        form.reset();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
